@@ -1,4 +1,4 @@
-// IM/2021/079 - pasindu Wickramasinghe
+// IM/2021/079 - pasindu Wickramasinghe UOK
 
 import 'package:flutter/material.dart';
 import 'package:math_expressions/math_expressions.dart';
@@ -38,7 +38,8 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(                       //App Bar
+        appBar: AppBar(
+          //App Bar
           title: const Text("IM-2021-079"),
           actions: [
             IconButton(
@@ -57,7 +58,8 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ],
         ),
-        body: Column(                                //Body
+        body: Column(
+          //Body
           children: [
             Container(
               height: MediaQuery.of(context).size.height / 3.5,
@@ -219,8 +221,10 @@ class _HomeScreenState extends State<HomeScreen> {
     return Colors.white;
   }
 
-  void handleButtonPress(String text) {           //Handle button process
-    if (text == "AC") {                      //AC
+  void handleButtonPress(String text) {
+    //Handle button process
+    if (text == "AC") {
+      //AC
       userInput = "";
       result = "0";
       errorMessage = "";
@@ -236,7 +240,7 @@ class _HomeScreenState extends State<HomeScreen> {
             context: context,
             builder: (context) => AlertDialog(
               title: const Text("Error"),
-              content: const Text("Can't divide by zero"),   //devide 0
+              content: const Text("Can't divide by zero"), //devide 0
               actions: [
                 TextButton(
                   onPressed: () {
@@ -271,7 +275,8 @@ class _HomeScreenState extends State<HomeScreen> {
         result = calculate();
         isResultDisplayed = true;
       }
-    } else if (text == "()") {          //+-/*
+    } else if (text == "()") {
+      //+-/*
       if (openBrackets == 0 &&
           (userInput.isEmpty ||
               "+-*/".contains(userInput[userInput.length - 1]))) {
@@ -298,11 +303,11 @@ class _HomeScreenState extends State<HomeScreen> {
         if (RegExp(r'[+\-*/.]').hasMatch(userInput[userInput.length - 1]) &&
             RegExp(r'[+\-*/.]').hasMatch(text)) return;
         if (userInput.endsWith(".") && text == ".") return;
-         // Prevent multiple decimals in the same number
-        if (text == "." && userInput.split(RegExp(r'[+\-*/()]')).last.contains(".")) {
+        // Prevent multiple decimals in the same number
+        if (text == "." &&
+            userInput.split(RegExp(r'[+\-*/()]')).last.contains(".")) {
           return;
         }
-
       }
 
       if (text == "0" && userInput.isNotEmpty) {
@@ -325,12 +330,12 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
-
-  String calculate() {                                                           //Calculate
+  String calculate() {
+    //Calculate
     try {
       final expression = Parser().parse(userInput);
-      final evaluation =
-          expression.evaluate(EvaluationType.REAL, ContextModel());               //Do the calculation
+      final evaluation = expression.evaluate(
+          EvaluationType.REAL, ContextModel()); //Do the calculation
       if (evaluation.isNaN || evaluation.isInfinite) {
         return "Error";
       }
