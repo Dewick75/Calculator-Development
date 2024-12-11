@@ -1,6 +1,6 @@
 // IM/2021/079 - pasindu Wickramasinghe
 
-import 'package:calculator/cal_window.dart';
+import 'package:calculator/home_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
